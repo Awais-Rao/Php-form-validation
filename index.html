@@ -184,9 +184,9 @@
 
     $(document).ready(function () {
         $('#user-form').on('submit', function (e) {
-            e.preventDefault(); // Prevent the default form submission
+            e.preventDefault();
 
-            // Form validation
+            // Form Validation
             var first_name = $('#first-name').val().trim();
             var last_name = $('#last-name').val().trim();
             var contact_no = $('#contact-no').val().trim();
@@ -206,31 +206,33 @@
                     title: "Oops...",
                     text: "Please fill out all required fields.",
                 });
+                return;
             }
-            else if(!contact_no.length == 11 ){
+
+            if (contact_no.length !== 11) {
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
-                    text: "Phone Number is not complete",
+                    text: "Phone Number is not complete.",
                 });
-                return; // Exit if validation fails
-
+                return;
             }
-
-
 
             var formData = new FormData(this);
 
+            // AJAX Request
             $.ajax({
                 type: 'POST',
                 url: 'form-data.php',
                 data: formData,
-                processData: false, // Do not process the data into query string
-                contentType: false, // Use the boundary for the file upload
+                processData: false,
+                contentType: false,
                 success: function (response) {
+                    var alertIcon = response == 'You have been Registered Successfully!' ? 'success' : 'error';
+                    var alertTitle = response == 'You have been Registered Successfully!' ? 'Congratulations!' : 'Oops...';
                     Swal.fire({
-                        icon: "success",
-                        title: "Congratulations!",
+                        icon: alertIcon,
+                        title: alertTitle,
                         text: response,
                     });
                 },
@@ -238,12 +240,13 @@
                     Swal.fire({
                         icon: "error",
                         title: "Oops...",
-                        text:  error,
+                        text: "Something went wrong!",
                     });
                 }
             });
         });
     });
+
 
 
 
