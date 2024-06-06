@@ -1,0 +1,48 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background: #0d6efd;
+}
+header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .8rem;
+}
+header h1{
+    color: #fff;
+    font-weight: 600 !important;
+}
+main{
+    margin: 0 5rem;
+}
+.form__wrapper{
+    padding: 2rem;
+    background: #fff;
+}
+.form__desc{
+    text-align: center;
+    position: relative;
+    font-weight: 500;
+    color: grey;
+}
+.form__desc::before,
+.form__desc::after{
+    content: '';
+    position: absolute;
+    width: 42%;
+    height: 1px;
+    background: grey;
+    top: 50%;
+    transform: translateY(50%);
+}
+.form__desc::before{
+    left: 0;
+}
+.form__desc::after{
+    right: 0;
+}
