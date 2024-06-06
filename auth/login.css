@@ -4,6 +4,34 @@
     box-sizing: border-box;
 }
 
-.login__page{
-    min-height: 100vh;
+.login__img-wrapper{
+    height: 100vh;
+    background: #b6d4fe;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.login__img{
+    width: 60%;
+}
+
+.login__form-wrapper{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.heading{
+    font-weight: 500;
+}
+
+.login__form{
+    width: 80%;
+}
+.login__btn{
+    background: #0d6efd;
+}
+.page__link{
+    color: #3674fd;
 }
