@@ -13,7 +13,7 @@
 
     <!-- SweetAlert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
+
     <!-- Ajax -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
@@ -183,9 +183,41 @@
 <script>
 
     $(document).ready(function () {
+        $('#user-form').on('submit', function (e) {
+            e.preventDefault(); // Prevent the default form submission
 
-        $('#user-form').submit(function (e) {
-            e.preventDefault();
+            // Form validation
+            var first_name = $('#first-name').val().trim();
+            var last_name = $('#last-name').val().trim();
+            var contact_no = $('#contact-no').val().trim();
+            var cnic = $('#cnic').val().trim();
+            var gender = $('input[name="gender"]:checked').val();
+            var dob = $('#dob').val();
+            var address = $('#address').val().trim();
+            var qualification = $('#qualification').val();
+            var email = $('#email').val().trim();
+            var password = $('#password').val().trim();
+            var result_card = $('#result-card')[0].files[0];
+            var interests = $("input[name='interests']:checked").length; // Validate at least one checkbox is selected
+
+            if (!first_name || !last_name || !contact_no || !cnic || !gender || !dob || !address || !qualification || !email || !password || !result_card || interests === 0) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Please fill out all required fields.",
+                });
+            }
+            else if(!contact_no.length == 11 ){
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Phone Number is not complete",
+                });
+                return; // Exit if validation fails
+
+            }
+
+
 
             var formData = new FormData(this);
 
@@ -193,25 +225,26 @@
                 type: 'POST',
                 url: 'form-data.php',
                 data: formData,
+                processData: false, // Do not process the data into query string
+                contentType: false, // Use the boundary for the file upload
                 success: function (response) {
                     Swal.fire({
                         icon: "success",
-                        title: "Congratulation",
+                        title: "Congratulations!",
                         text: response,
                     });
                 },
                 error: function (error) {
                     Swal.fire({
                         icon: "error",
-                        title: "Ooops...",
-                        text: response,
+                        title: "Oops...",
+                        text:  error,
                     });
                 }
             });
+        });
+    });
 
-        })
-
-    })
 
 
 
