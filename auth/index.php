@@ -1,3 +1,12 @@
+<?php
+require '../connection.php';
+session_start();
+
+if (isset($_SESSION['user-id'])) {
+    header('location: ../dashboard');
+}
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -29,9 +38,9 @@
         <div class="container-fluid login__page">
             <div class="row">
                 <div class="col-7 login__img-wrapper">
-                    <svg class="animated login__img" id="freepik_stories-secure-login" xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 500 500" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
-                        xmlns:svgjs="http://svgjs.com/svgjs">
+                    <svg class="animated login__img" id="freepik_stories-secure-login"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" version="1.1"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs">
                         <style>
                             svg#freepik_stories-secure-login:not(.animated) .animable {
                                 opacity: 0;
@@ -1109,7 +1118,7 @@
                     </svg>
 
                 </div>
-                
+
                 <div class="col-5">
                     <div class="container-fluid login__form-wrapper">
                         <div class="heading display-5">Login</div>
@@ -1162,5 +1171,74 @@
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
         crossorigin="anonymous"></script>
 </body>
+
+<script>
+
+    $(document).ready(function () {
+        $('#login-form').on('submit', function (e) {
+            e.preventDefault();
+
+            var email = $('#email').val().trim();
+            var password = $('#password').val().trim();
+
+            if (!email || !password) {
+                swal.fire({
+                    icon: "error",
+                    title: "Ooops...",
+                    text: "All fields are required.",
+                    confirmButtonColor: "#f27474",
+                });
+                return;
+            }
+
+            var formData = new FormData(this);
+
+            $.ajax({
+                type: 'POST',
+                url: 'login.php',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    var resp = JSON.parse(response);
+                    if (resp.success) {
+
+                        window.location.href = '../dashboard/'; // Redirect to dashboard or desired page
+                        
+                        // Swal.fire({
+                        //     icon: "success",
+                        //     title: "Congratulations!",
+                        //     text: resp.success,
+                        //     confirmButtonColor: "#b2e198",
+                        // }).then(function () {
+                        //     window.location.href = '../dashboard/'; // Redirect to dashboard or desired page
+                        // });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            html: `User does not exist with provided email,
+                                    <a class="page__link" href="../index.html">Register Now</a>`,
+                            confirmButtonColor: "#f27474",
+                        });
+                    }
+                },
+                error: function (error) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "An error occurred while processing your request.",
+                        confirmButtonColor: "#f27474",
+                    });
+                }
+            })
+
+        })
+
+
+
+    })
+
+</script>
 
 </html>

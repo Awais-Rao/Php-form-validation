@@ -1,0 +1,6 @@
+.actions_colum{
+    display: flex;
+    align-items: center;
+
+    justify-content: space-evenly;
+}
