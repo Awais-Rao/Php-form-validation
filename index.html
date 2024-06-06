@@ -26,50 +26,56 @@
 
 <body>
     <header>
-        <h1 class="display-3">User Authentication</h1>
+        <h1 class="display-4">User Authentication</h1>
     </header>
     <main>
         <div class="form__wrapper">
 
             <form id="user-form" method="post" enctype="multipart/form-data">
                 <div class="form__container container-fluid">
-                    <p class="form__desc">Personal Information</p>
+                    <p class="form__desc my-4">Personal Information</p>
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-6">
                             <div class="mb-3">
                                 <label for="first-name" class="form-label">First Name</label>
                                 <input type="text" class="form-control" name="first-name" id="first-name"
                                     placeholder="john" />
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-6">
                             <div class="mb-3">
                                 <label for="last-name" class="form-label">Last Name</label>
                                 <input type="text" class="form-control" name="last-name" id="last-name"
                                     placeholder="parker" />
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-6">
                             <div class="mb-3">
                                 <label for="contact-no" class="form-label">Contact no</label>
                                 <input type="number" class="form-control" name="contact-no" id="contact-no"
                                     placeholder="0320-1234567" />
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-6">
                             <div class="mb-3">
                                 <label for="cnic" class="form-label">CNIC no</label>
                                 <input type="number" class="form-control" name="cnic" id="cnic"
                                     placeholder="35202-1234567-8" />
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="dob" class="form-label">Date of Birth</label>
+                                <input type="date" class="form-control" name="dob" id="dob" />
+                            </div>
+                        </div>
+                        <div class="col-6">
                             <div class="mb-3">
                                 <label for="" class="form-label mb-3">Gender</label>
                                 <br>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="gender" id="gender-male"
-                                        value="male" />
+                                        value="male" checked />
                                     <label class="form-check-label" for="gender-male">Male</label>
                                 </div>
                                 <div class="form-check form-check-inline">
@@ -84,15 +90,7 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-4">
-                            <div class="mb-3">
-                                <label for="dob" class="form-label">Date of Birth</label>
-                                <input type="date" class="form-control" name="dob" id="dob" />
-                            </div>
-                        </div>
-
-                        <div class="col-4">
+                        <div class="col-12">
                             <div class="mb-3">
                                 <label for="address" class="form-label">Address</label>
                                 <textarea class="form-control" name="address" id="address" rows="3"></textarea>
@@ -100,10 +98,10 @@
                         </div>
                     </div>
 
-                    <p class="form__desc">Educational Information</p>
+                    <p class="form__desc my-4">Educational Information</p>
                     <div class="row">
-                        <div class="col-4">
-                            <div class="mb-3">
+                        <div class="col-6">
+                            <div class="mb-2">
                                 <label for="qualification" class="form-label">Qualification</label>
                                 <select class="form-select form-select" name="qualification" id="qualification">
                                     <option selected value="matric">Matriculation</option>
@@ -113,7 +111,16 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-6">
+                            <div class="mb-2">
+                                <label for="result-card" class="form-label">Result Card</label>
+                                <input type="file" class="form-control" name="result-card" id="result-card"
+                                    aria-describedby="fileHelpId" accept="image/*,.pdf" />
+                                <div id="fileHelpId" class="form-text">Upload your highest qualification result card
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
                             <label for="interests" class="form-label mb-3">Interests</label>
                             <br>
                             <div class="form-check form-check-inline">
@@ -132,20 +139,11 @@
                                 <label class="form-check-label" for="interest-designing">Designing</label>
                             </div>
                         </div>
-                        <div class="col-4">
-                            <div class="mb-3">
-                                <label for="result-card" class="form-label">Result Card</label>
-                                <input type="file" class="form-control" name="result-card" id="result-card"
-                                    aria-describedby="fileHelpId" accept="image/*,.pdf" />
-                                <div id="fileHelpId" class="form-text">Upload your highest qualification result card
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
-                    <p class="form__desc">Login Information</p>
+                    <p class="form__desc my-4">Login Information</p>
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-6">
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email" class="form-control" name="email" id="email"
@@ -153,7 +151,7 @@
 
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-6">
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
                                 <input type="password" class="form-control" name="password" id="password"
@@ -164,7 +162,7 @@
                     </div>
 
                     <div class="row">
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary submit__btn my-3">
                             Submit
                         </button>
                     </div>
@@ -233,10 +231,15 @@
                 success: function (response) {
                     var alertIcon = response == 'You have been Registered Successfully!' ? 'success' : 'error';
                     var alertTitle = response == 'You have been Registered Successfully!' ? 'Congratulations!' : 'Oops...';
+
+
                     Swal.fire({
                         icon: alertIcon,
                         title: alertTitle,
                         text: response,
+                        confirmButtonColor: "#b2e198",
+                    }).then(() => {
+                        $('#user-form')[0].reset();
                     });
                 },
                 error: function (error) {
